@@ -15,7 +15,7 @@
         <p class="notice"><%= notice %></p>
       </div>
     <% elsif flash[:alert] %>
-      <div class="notification is-danger global-notification">
+      <div class="notification is-danger global-notification" id="notice_alert">
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
@@ -38,17 +38,17 @@
             </p>
             <% if user_signed_in? %>
               <p class="control">
-                <%= link_to current_user.name, edit_user_registration_path, class:"button is-success"%>
+                <%= link_to current_user.name, edit_user_registration_path, class:"button is-info"%>
               </p>
               <p class="control">
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"button is-danger"%>
               </p>
             <% else %>
               <p class="control">
-                <%= link_to 'Sign In', new_user_session_path , class:"button is-white"%>
+                <%= link_to 'Sign In', new_user_session_path , class:"button is-info"%>
               </p>
               <p class="control">
-                <%= link_to 'Sign Up', new_user_registration_path , class:"button is-white"%>
+                <%= link_to 'Sign Up', new_user_registration_path , class:"button is-success"%>
               </p>
             <% end %>
           </div>
@@ -58,8 +58,12 @@
     <%= yield %>
     <script>
       notice = document.getElementById('notice_wrapper');
+      alert = document.getElementById('notice_alert');
       removeNotice = setTimeout(function () {
       notice.remove();
+        }, 3000);
+      alertNotice = setTimeout(function () {
+      alert.remove();
         }, 3000);
     </script>
   </body>

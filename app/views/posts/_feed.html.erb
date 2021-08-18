@@ -21,7 +21,9 @@
         </div>
         <div class="media-content">
           <div class="content">
-            <strong><%= post.user.name %></strong><br />
+            <% if user_signed_in? %>
+              <strong>@<%= post.user.name %></strong><br />
+            <% end %>
             <p><%= post.post %></p>
           </div>
           <% if user_signed_in? && current_user.id == post.user_id %>
